@@ -1,0 +1,109 @@
+<!-- Direção de design: catálogo mobile escuro, verde-musgo e sinais visuais de margem para o Oportunidades ML. -->
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Catálogo portável de oportunidades de revenda com filtros e calculadora de margem." />
+  <title>Oportunidades ML — versão portável</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <main class="app-shell">
+    <header class="masthead">
+      <div class="brand-row">
+        <img class="brand-mark" src="assets/logo-oportunidades-ml.png" alt="Símbolo Oportunidades ML" />
+        <div>
+          <p class="eyebrow">CATÁLOGO DE REVENDA</p>
+          <h1>Oportunidades ML</h1>
+          <p class="updated"><span></span>Versão portável — seus arquivos estão nesta pasta</p>
+        </div>
+      </div>
+      <div class="quick-actions" aria-label="Atalhos do catálogo">
+        <button type="button" data-scroll="filters">Fornec.</button>
+        <button type="button" data-scroll="calculator">Gestão</button>
+        <button type="button" data-scroll="calculator">Calculadora</button>
+        <button type="button" data-scroll="catalog">Links</button>
+      </div>
+      <nav class="tabs" aria-label="Navegação do catálogo">
+        <a href="#catalog">Produtos</a>
+        <a href="#filters">Em alta</a>
+        <a href="#catalog">Categorias</a>
+      </nav>
+    </header>
+
+    <section class="content">
+      <button class="hero" type="button" data-scroll="filters" aria-label="Abrir filtros de oportunidades">
+        <img src="assets/oportunidades-banner-produtos.jpg"
+          alt="Produtos de casa, tecnologia e acessórios para revenda" />
+        <span class="hero-copy"><small>SELEÇÃO SEMANAL</small><strong>O que vende<br />todo dia</strong><em>7 categorias
+            · margem é estimativa</em></span>
+      </button>
+
+      <section id="filters" class="filter-panel" aria-labelledby="filter-title">
+        <div class="filter-title">
+          <p class="eyebrow"><span class="status-dot"></span> PESQUISA LOCAL</p>
+          <h2 id="filter-title">Escolha seus critérios.</h2>
+          <p>Os filtros funcionam neste catálogo. Para anúncios reais, conecte a API que você escolher no seu próprio
+            servidor.</p>
+        </div>
+        <form id="filters-form" class="filter-grid">
+          <label>Categoria
+            <select id="category-filter" name="category"></select>
+          </label>
+          <label>Margem mínima
+            <span class="number-input"><input id="margin-filter" name="margin" inputmode="decimal" type="number" min="0"
+                max="100" value="30" /><b>%</b></span>
+          </label>
+          <label>Investimento máximo
+            <span class="number-input"><b>R$</b><input id="investment-filter" name="investment" inputmode="decimal"
+                type="number" min="0" value="500" /></span>
+          </label>
+          <label>Estado do vendedor
+            <select id="state-filter" name="state"></select>
+          </label>
+        </form>
+        <div class="filter-summary" aria-live="polite"><span>SUA PESQUISA</span>
+          <p id="filter-summary"></p>
+        </div>
+      </section>
+
+      <section class="section-heading" aria-labelledby="catalog-title">
+        <div><span>↗</span>
+          <h2 id="catalog-title">Em alta esta semana</h2>
+        </div>
+        <p id="catalog-count"></p>
+      </section>
+      <section id="catalog" class="catalog-grid" aria-live="polite"></section>
+      <p id="catalog-empty" class="empty-state" hidden>Nenhuma categoria atende aos critérios. Diminua a margem mínima
+        ou escolha outra categoria.</p>
+
+      <section id="calculator" class="calculator" aria-labelledby="calculator-title">
+        <div class="calculator-copy">
+          <p class="eyebrow">SIMULADOR LOCAL</p>
+          <h2 id="calculator-title">Calcule antes de anunciar.</h2>
+          <p>Este cálculo acontece no seu navegador; nenhum dado é enviado para fora desta página.</p>
+        </div>
+        <div class="calculator-fields">
+          <label>Custo do produto <span>R$<input id="cost" type="number" min="0" step="0.1" value="46" /></span></label>
+          <label>Preço de venda <span>R$<input id="price" type="number" min="0" step="0.1"
+                value="119.9" /></span></label>
+          <label>Taxa da plataforma <span><input id="fee" type="number" min="0" step="0.1" value="16" />%</span></label>
+          <label>Frete estimado <span>R$<input id="shipping" type="number" min="0" step="0.1"
+                value="18" /></span></label>
+          <label>Custos extras <span>R$<input id="extra" type="number" min="0" step="0.1" value="5" /></span></label>
+        </div>
+        <div id="calculator-result" class="calculator-result" aria-live="polite"></div>
+      </section>
+
+      <aside class="notice"><strong>Importante:</strong> as margens são referências de curadoria. Confirme preço, taxa,
+        frete, impostos e concorrência antes de investir.</aside>
+    </section>
+  </main>
+  <script defer src="app.mjs"></script>
+</body>
+
+</html>
